@@ -1,33 +1,46 @@
-NAME		=	push_swap
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/23 11:40:39 by beredzhe          #+#    #+#              #
+#    Updated: 2024/02/23 11:40:39 by beredzhe         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC			=	*.c \
-				libft/*.c \
+NAME		=		push_swap
 
-CC			=	gcc
+SRC			=		calc_check.c	cost_benefit.c	create.c \
+					list_check.c   list_check2.c  operations.c \
+					push_swap.c		cost_helper.c	error_check.c \
+					main.c libft/*.c \
 
-CFLAGS		=	-Wall -Wextra -Werror
+CC			=		cc
 
-LIBFTDIR	=	libft/
+CFLAGS		=		-Werror -Wextra -Wall
 
-LIBFTA		=	libft.a
+LIBFTDIR	=		libft/
 
-all:			$(NAME)
+LIBFTA		=		libft.a
 
-$(NAME):		$(LIBFTA)
+
+all:		$(NAME)
+
+$(NAME):	$(LIBFTA)
 	@$(CC) $(CFLAGS) $(SRC) $(LIBFTA) -o $(NAME)
 	@rm -f $(LIBFTA)
 	@echo "$(NAME) created"
 
 $(LIBFTA):
 	@cd ./$(LIBFTDIR) && make all
-	@cp ./$(LIBFTDIR)$(LIBFTA) .
+	@cp libft/libft.a .
 
 clean:
-	@cd ./$(LIBFTDIR) && make fclean
+		@cd $(LIBFTDIR) && make fclean
 
 fclean: clean
-	@rm -f $(NAME)
+		@rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

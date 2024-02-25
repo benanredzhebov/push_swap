@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 10:08:26 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/02/11 10:31:42 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/02/23 11:42:21 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/02/23 11:42:21 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ int	main(int argc, char **argv)
 	{
 		if (!checks(argv))
 			return (2);
+		get_list(argv, &head);
+		if (extra_case(head))
+			return (3);
+		push_swap(&head);
+		clear(&head);
+		return (0);
 	}
 	return (4);
 }

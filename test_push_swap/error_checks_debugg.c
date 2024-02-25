@@ -1,16 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_checks.c                                     :+:      :+:    :+:   */
+/*   error_checks_debugg.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/11 10:34:25 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/02/12 17:12:06 by beredzhe         ###   ########.fr       */
+/*   Created: 2024/02/17 08:19:21 by beredzhe          #+#    #+#             */
+/*   Updated: 2024/02/17 08:24:49 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
+{
+	size_t	i;
+
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (i < n - 1 && str1[i] != '\0' \
+	&& str2[i] != '\0' && str1[i] == str2[i])
+		i++;
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
+}
 
 int	ft_iscorrect(char **str)
 {
@@ -45,7 +75,7 @@ int	ft_isbound(char *str)
 	int		i;
 	int		isneg;
 	long	nbr;
-	
+
 	i = 0;
 	isneg = 0;
 	nbr = 0;
@@ -114,4 +144,24 @@ int	checks(char **str)
 		i++;
 	}
 	return (1);
+}
+
+int	main(int argc, char *argv[])
+{
+	if (argc < 2) {
+		printf("Usage: %s [integer1] [integer2] ...\n", argv[0]);
+		return 1;
+	}
+
+	// Assuming argv[0] is the program name, skip it
+	if (!checks(argv)) {
+		// Input validation failed, exit program
+		return 1;
+	}
+
+	// All input validation passed, proceed with program logic
+	// For example, you can convert the strings to integers and perform some operations
+	printf("Input validation passed!\n");
+
+	return (0);
 }
